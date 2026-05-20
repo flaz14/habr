@@ -54,7 +54,7 @@ Exception in thread "main" java.lang.RuntimeException: exception from CATCH bloc
 ### Листинг 2
 
 ```java
-public class Listing2 {
+public class Listing1a {
     public static void main(String[] args) throws Exception {
         try (AutoCloseable r = () -> {
             System.out.println("> TWR block");
@@ -73,10 +73,10 @@ public class Listing2 {
 > TRY block
 > TWR block
 Exception in thread "main" java.lang.RuntimeException: exception from TRY block
-	at Listing2.main(Listing2.java:8)
+	at Listing1a.main(Listing1a.java:8)
 	Suppressed: java.lang.RuntimeException: exception from TWR block
-		at Listing2.lambda$main$0(Listing2.java:5)
-		at Listing2.main(Listing2.java:3)
+		at Listing1a.lambda$main$0(Listing1a.java:5)
+		at Listing1a.main(Listing1a.java:3)
 ```
 
 Попробуем добиться такого же эффекта применительно к блоку `catch`.

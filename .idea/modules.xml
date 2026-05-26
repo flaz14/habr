@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/collections/collections.iml" filepath="$PROJECT_DIR$/collections/collections.iml" />
+      <module fileurl="file://$PROJECT_DIR$/collections-recursion/collections-recursion.iml" filepath="$PROJECT_DIR$/collections-recursion/collections-recursion.iml" />
       <module fileurl="file://$PROJECT_DIR$/exceptions/exceptions.iml" filepath="$PROJECT_DIR$/exceptions/exceptions.iml" />
       <module fileurl="file://$PROJECT_DIR$/habr.iml" filepath="$PROJECT_DIR$/habr.iml" />
     </modules>

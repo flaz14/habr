@@ -16,6 +16,13 @@ public class EverySolutionTest {
 
     @ParameterizedTest
     @MethodSource("data")
+    void loopSolutionTest(List<Integer> expected, List<Integer> input) {
+        Collection<Integer> actual = LoopSolution.cleanCollection(input);
+        assertEquals(expected, actual);
+    }
+
+    @ParameterizedTest
+    @MethodSource("data")
     void recursiveSolutionTest(List<Integer> expected, List<Integer> input) {
         Collection<Integer> actual = RecursiveSolution.cleanCollection(input);
         assertEquals(expected, actual);

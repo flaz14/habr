@@ -5,11 +5,11 @@ import java.util.Iterator;
 import static java.util.Collections.singletonList;
 
 public class RecursiveSolution {
-    public static <T> Collection<T> cleanCollection(Collection<T> collection) {
-        if (collection.isEmpty())
-            return collection;
+    public static <T> Collection<T> cleanCollection(Collection<T> input) {
+        if (input.isEmpty())
+            return input;
 
-        Iterator<T> tail = collection.iterator();
+        Iterator<T> tail = input.iterator();
 
         return cleanTail(
                 tail.next(),
@@ -31,12 +31,12 @@ public class RecursiveSolution {
                         ? previousItem
                         : null;
 
-                Collection<T> otherItems = cleanTail(currentItem, tail);
+                Collection<T> remainingItems = cleanTail(currentItem, tail);
 
-                Collection<T> result = new ArrayList<>();
-                result.add(mergedItem);
-                result.addAll(otherItems);
-                return result;
+                Collection<T> output = new ArrayList<>();
+                output.add(mergedItem);
+                output.addAll(remainingItems);
+                return output;
             }
         } while (tail.hasNext());
 

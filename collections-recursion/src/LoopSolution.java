@@ -7,10 +7,11 @@ public class LoopSolution {
         if (input.size() < 2)
             return input;
 
+        Collection<T> output = new ArrayList<>();
+
         Iterator<T> tail = input.iterator();
         T previousItem = tail.next();
         int duplicatesCount = 0;
-        Collection<T> output = new ArrayList<>();
         do {
             T currentItem = tail.next();
             if (currentItem.equals(previousItem)) {

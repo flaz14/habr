@@ -17,21 +17,22 @@ public class LoopSolution {
             if (currentItem.equals(previousItem)) {
                 duplicatesCount++;
             } else {
-                T mergedItem = duplicatesCount == 0
-                        ? previousItem
-                        : null;
+                T mergedItem = merged(duplicatesCount, previousItem);
                 output.add(mergedItem);
                 previousItem = currentItem;
                 duplicatesCount = 0;
             }
         } while (tail.hasNext());
 
-        T lastItem = duplicatesCount == 0
-                ? previousItem
-                : null;
-
+        T lastItem = merged(duplicatesCount, previousItem);
         output.add(lastItem);
 
         return output;
+    }
+
+    private static <T> T merged(int duplicatesCount, T previousItem) {
+        return duplicatesCount == 0
+                ? previousItem
+                : null;
     }
 }

@@ -1,13 +1,13 @@
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
+import java.util.*;
+
+import static java.util.Collections.*;
 
 public class LoopSolution {
-    public static <T> Collection<T> cleanCollection(Collection<T> input) {
+    public static <T> List<T> cleanCollection(Collection<T> input) {
         if (input.size() < 2)
-            return input;
+            return unmodifiableList(new ArrayList<T>(input));
 
-        Collection<T> output = new ArrayList<>();
+        List<T> output = new ArrayList<>();
 
         Iterator<T> tail = input.iterator();
         T previousItem = tail.next();

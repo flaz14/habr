@@ -1,13 +1,14 @@
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 
-import static java.util.Collections.singletonList;
+import static java.util.Collections.*;
 
 public class RecursiveSolution {
-    public static <T> Collection<T> cleanCollection(Collection<T> input) {
+    public static <T> List<T> cleanCollection(Collection<T> input) {
         if (input.isEmpty())
-            return input;
+            return emptyList();
 
         Iterator<T> tail = input.iterator();
 
@@ -16,8 +17,8 @@ public class RecursiveSolution {
                 tail);
     }
 
-    private static <T> Collection<T> cleanTail(T previousItem,
-                                               Iterator<T> tail) {
+    private static <T> List<T> cleanTail(T previousItem,
+                                         Iterator<T> tail) {
         if (!tail.hasNext())
             return singletonList(previousItem);
 
@@ -31,12 +32,12 @@ public class RecursiveSolution {
                         ? previousItem
                         : null;
 
-                Collection<T> remainingItems = cleanTail(currentItem, tail);
+                List<T> remainingItems = cleanTail(currentItem, tail);
 
-                Collection<T> output = new ArrayList<>();
+                List<T> output = new ArrayList<>();
                 output.add(mergedItem);
                 output.addAll(remainingItems);
-                return output;
+                return unmodifiableList(output);
             }
         } while (tail.hasNext());
 

@@ -1,11 +1,12 @@
-import java.util.*;
-
-import static java.util.Collections.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
 
 public class LoopSolution {
     public static <T> List<T> cleanCollection(Collection<T> input) {
         if (input.size() < 2)
-            return unmodifiableList(new ArrayList<T>(input));
+            return List.copyOf(input);
 
         List<T> output = new ArrayList<>();
 

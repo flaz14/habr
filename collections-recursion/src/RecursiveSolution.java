@@ -3,7 +3,9 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-import static java.util.Collections.*;
+import static java.util.Collections.emptyList;
+import static java.util.Collections.singletonList;
+import static java.util.Collections.unmodifiableList;
 
 public class RecursiveSolution {
     public static <T> List<T> cleanCollection(Collection<T> input) {
@@ -28,15 +30,17 @@ public class RecursiveSolution {
             if (currentItem.equals(previousItem)) {
                 duplicatesCount++;
             } else {
+                List<T> output = new ArrayList<>();
+
                 T mergedItem = duplicatesCount == 0
                         ? previousItem
                         : null;
 
-                List<T> remainingItems = cleanTail(currentItem, tail);
-
-                List<T> output = new ArrayList<>();
                 output.add(mergedItem);
+
+                List<T> remainingItems = cleanTail(currentItem, tail);
                 output.addAll(remainingItems);
+
                 return unmodifiableList(output);
             }
         } while (tail.hasNext());

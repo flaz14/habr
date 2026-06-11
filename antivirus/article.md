@@ -36,12 +36,12 @@ Qubes OS – не очередной дистрибутив, а настояща
 Выходим на рабочий стол, нажимаем **Alt** + **F2**. В появившемся окошке *Application Finder*'а
 вводим `xfce4-terminal`, нажимаем **Enter**:
 
-![application-finder.png](application-finder.png)
+![application-finder.png](images/application-finder.png)
 
 Откроется эмулятор терминала главного куба – так называемого
 [dom0](https://doc.qubes-os.org/en/latest/user/reference/glossary.html#term-dom0):
 
-![dom0-terminal.png](dom0-terminal.png)
+![dom0-terminal.png](images/dom0-terminal.png)
 
 Выясним, какие шаблоны уже имеются в нашем распоряжении (как видно из приглашения `@dom0`, команда
 вводится и выполняется в кубе **dom0**.):
@@ -99,7 +99,7 @@ Qubes OS. Но об этом [позже](#signatures-update).
 
 Откроется привычное окно, только с зелёной рамкой:
 
-![antivirus-base.png](antivirus-base.png)
+![antivirus-base.png](images/antivirus-base.png)
 
 Удалим ненужные пакеты (на самом деле, можно безболезненно удалить ещё с десяток):
 
@@ -279,18 +279,18 @@ antivirus
 (совсем как кнопка «Пуск» в Windows). Далее *Template (disp): antivirus* → *antivirus: Qube
 Settings*. Откроется окно настроек куба:
 
-![antivirus-basic-settings.png](antivirus-basic-settings.png)
+![antivirus-basic-settings.png](images/antivirus-basic-settings.png)
 
 Как видим, сеть и цвет настроены правильно. Жёлтый треугольник с восклицательным знаком всего лишь
 предупреждает о том, что в кубе имеются ярлыки несуществующих приложений (удаление пакета
 посредством *apt* не удаляет ярлыки). Их можно удалить вручную, перейдя на вкладку
 [Applications](#applications-tab):
 
-![antivirus-applications-settings.png](antivirus-applications-settings.png)
+![antivirus-applications-settings.png](images/antivirus-applications-settings.png)
 
 А на вкладке *Advanced*, можно убедиться, что наш куб является шаблоном для одноразовых кубов:
 
-![antivirus-advanced-settings.png](antivirus-advanced-settings.png)
+![antivirus-advanced-settings.png](images/antivirus-advanced-settings.png)
 
 Осталось вынести ярлык «песочницы» на рабочий стол. Щелкаем по кнопке **Q**, наводим курсор на пункт
 *Template (disp): antivirus*, в выпавшем подменю находим *antivirus: Terminal*, хватаем этот пункт
@@ -309,7 +309,7 @@ X5O!P%@AP[4\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*
 Нам нужно проверить его на наличие вирусов. Для этого дважды щёлкаем на ярлыке антивируса
 (заодно отмечаем ярлык исполняемым):
 
-![antivirus-shortcut-executable.png](antivirus-shortcut-executable.png)
+![antivirus-shortcut-executable.png](images/antivirus-shortcut-executable.png)
 
 Запустится эмулятор терминала одноразового куба с антивирусом. Имя у него будет вида *dispXXXX*. В
 данном случае, *disp2525*. Возвращаемся в куб *work*.
@@ -318,7 +318,7 @@ X5O!P%@AP[4\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*
 
 Переходим в терминал одноразового куба. Набираем `scan QubesIncoming` и смотрим на результат:
 
-![scan-result.png](scan-result.png)
+![scan-result.png](images/scan-result.png)
 
 Если файл заражён (в нашем случае EICAR-файл всегда будет выглядеть зараженным, хотя это всего лишь
 текст), то просто закрываем окно консоли антивируса. Одноразовый куб тут же уничтожится, а вместе с

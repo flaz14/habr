@@ -179,8 +179,27 @@ alias scan='clamdscan --fdpass --multiscan --verbose'
 [TOR](https://www.whonix.org/wiki/Qubes) – не проблема. Да и с VPN особых трудностей не возникает.
 
 В нашем случае будет достаточно «подкинуть» сигнатуры вручную. У себя в закромах я их откопал и
-выложил на GitHub ?здесь буду ссылки на мой гитхаб?. Да-да, слегка устарели. Но для демонстрации
-подойдут. Копируем их в `/var/lib/clamav`, чтобы получился такой вид:
+выложил на [GitHub](https://github.com/flaz14/habr/tree/main/antivirus/signatures).
+
+<spoiler title="Страждущий да соберёт всё воедино">
+
+По-хорошему, нужно было разместить сигнатуры в репозитории как есть. Но для этого пришлось бы мне
+повозиться с [Git Large File Storage](https://github.com/git-lfs/git-lfs#getting-started)
+ввиду лимитов GitHub'а. Но я подумал: а кому реально нужно старьё?
+
+Так что придётся скачать отдельные файлы. Затем склеить их:
+
+```bash
+cat signatures.tar.01  signatures.tar.02  signatures.tar.03  signatures.tar.04  signatures.tar.05 > signatures.tar
+```
+
+И распаковать:
+
+```commandline
+tar xvf signatures.tar
+```
+
+И поместить в каталог */var/lib/clamav* шаблона *antivirus-base*, чтобы получилась такая картина:
 
 ```
 user@antivirus-base:~$ ls -alh /var/lib/clamav
@@ -192,9 +211,10 @@ drwxr-xr-x 47 root   root   4.0K Jun 10 17:43 ..
 -rw-r--r--  1 root   root   163M Jun 10 18:11 main.cvd
 ```
 
-На всякий случай, проверим:
+</spoiler>
 
-<spoiler title="несколько команд">
+
+На всякий случай, проверим:
 
 ```
 user@antivirus-base:~$ systemctl start clamav-daemon.service
@@ -226,10 +246,9 @@ Start Date: 2026:06:10 18:13:09
 End Date:   2026:06:10 18:13:09
 ```
 
-</spoiler>
-
 Не помешает заглянуть в конфигурацию */etc/clamav/clamd.conf*. Там много чего интересного. Так, по
-умолчанию сканируются только файлы объемом не больше 25 мегабайт.
+умолчанию сканируются только файлы объемом не больше 25 мегабайт. Что-то я настраивал, пусть
+[валяется](https://github.com/flaz14/habr/blob/main/antivirus/clamd.conf) на всякий случай.
 
 ## Создаём шаблон для одноразовых кубов
 

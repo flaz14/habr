@@ -181,7 +181,7 @@ alias scan='clamdscan --fdpass --multiscan --verbose'
 В нашем случае будет достаточно «подкинуть» сигнатуры вручную. У себя в закромах я их откопал и
 выложил на [GitHub](https://github.com/flaz14/habr/tree/main/antivirus/signatures).
 
-<spoiler title="Страждущий да соберёт всё воедино">
+<spoiler title="Страждущий да соберёт всё воедино.">
 
 По-хорошему, нужно было разместить сигнатуры в репозитории как есть. Но для этого пришлось бы мне
 повозиться с [Git Large File Storage](https://github.com/git-lfs/git-lfs#getting-started)
@@ -193,7 +193,7 @@ alias scan='clamdscan --fdpass --multiscan --verbose'
 cat signatures.tar.01  signatures.tar.02  signatures.tar.03  signatures.tar.04  signatures.tar.05 > signatures.tar
 ```
 
-И распаковать:
+Потом распаковать:
 
 ```commandline
 tar xvf signatures.tar
@@ -248,7 +248,7 @@ End Date:   2026:06:10 18:13:09
 
 Не помешает заглянуть в конфигурацию */etc/clamav/clamd.conf*. Там много чего интересного. Так, по
 умолчанию сканируются только файлы объемом не больше 25 мегабайт. Что-то я настраивал, пусть
-[валяется](https://github.com/flaz14/habr/blob/main/antivirus/clamd.conf) на всякий случай.
+[валяется](https://github.com/flaz14/habr/blob/main/antivirus/clamd.conf).
 
 ## Создаём шаблон для одноразовых кубов
 
@@ -300,7 +300,7 @@ Settings*. Откроется окно настроек куба:
 Как видим, сеть и цвет настроены правильно. Жёлтый треугольник с восклицательным знаком всего лишь
 предупреждает о том, что в кубе имеются ярлыки несуществующих приложений (удаление пакета
 посредством *apt* не удаляет ярлыки). Их можно удалить вручную, перейдя на вкладку
-[Applications](#applications-tab):
+*Applications*:
 
 ![antivirus-applications-settings.png](images/antivirus-applications-settings.png)
 
@@ -374,7 +374,7 @@ X5O!P%@AP[4\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*
 
 ## P.S.
 
-Штатный механизм обновлений (по крайне мере, в Qubes OS версии 4.1) не делает `apt autoremove`. Так
-что если вдруг вылезла ошибка, что какой-то там куб is running out of storage space, то первое, что
-нужно сделать – открыть его терминал и вбить `sudo apt autoremove`. Я так поступаю после каждого
+После обновлений Qubes OS (по крайне мере, версия 4.1) не делает `apt autoremove`. Так что если
+вдруг вылезла ошибка, что какой-то там куб is running out of storage space, то первое, что нужно
+сделать – открыть его терминал и вбить `sudo apt autoremove`. Я так поступаю после каждого
 обновления системы. На самом деле, через два или даже через три, ибо каждый раз муторно :)

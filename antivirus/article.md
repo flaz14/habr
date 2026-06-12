@@ -15,14 +15,13 @@ Qubes OS – не очередной дистрибутив, а настояща
 
 Всё изложенное в статье делалось давно. С тех пор много воды утекло. Qubes OS версии 4.1
 состарилась. Официальный сайт антивируса ClamAV ([www.clamav.net](https://www.clamav.net/)) и
-серверы обновлений стали недоступны (по крайней мере, из Беларуси). Так что придётся повозиться.
+серверы обновлений стали недоступны (по крайней мере, из Беларуси).
 
 Ещё немного терминологии.
 [Глоссарий](https://doc.qubes-os.org/en/latest/user/reference/glossary.html)
 прекрасен в своей точности и полноте. Мы лишь слегка его русифицируем:
 
-* [qube](https://doc.qubes-os.org/en/latest/user/reference/glossary.html#term-qube) - это просто
-  куб;
+* [qube](https://doc.qubes-os.org/en/latest/user/reference/glossary.html#term-qube) - куб;
 * [template](https://doc.qubes-os.org/en/latest/user/reference/glossary.html#term-template) -
   шаблон;
 * [disposable](https://doc.qubes-os.org/en/latest/user/reference/glossary.html#term-disposable) -
@@ -35,9 +34,7 @@ Qubes OS – не очередной дистрибутив, а настояща
 Выходим на рабочий стол, нажимаем **Alt** + **F2**. В появившемся окошке *Application Finder*'а
 вводим `xfce4-terminal`, нажимаем **Enter**:
 
-![ффф](https://github.com/flaz14/habr/blob/main/antivirus/images/antivirus-advanced-settings.png "")
-
-![aaa](https://github.com/flaz14/habr/blob/main/antivirus/images/antivirus-advanced-settings.png)
+![application-finder.png](images/application-finder.png)
 
 Откроется эмулятор терминала главного куба – так называемого
 [dom0](https://doc.qubes-os.org/en/latest/user/reference/glossary.html#term-dom0):
@@ -164,7 +161,7 @@ alias scan='clamdscan --fdpass --multiscan --verbose'
 [updates proxy](https://doc.qubes-os.org/en/latest/user/how-to-guides/how-to-install-software.html#updates-proxy) (
 штатный механизм обновлений Qubes OS ни о каком ClamAV не знает), или паковать сигнатуры вручную.
 
-С другой стороны, что может случиться, если просто запустить эмулятор терминала, выполнить в нём
+С другой стороны, что может случиться страшного, если запустить эмулятор терминала, выполнить в нём
 команду
 `systemctl restart clamav-freshclam.service`, проверить на всякий случай командой
 `systemctl status clamav-freshclam.service` и больше **ничего не делать**? Я думаю, всё будет в
@@ -179,8 +176,7 @@ alias scan='clamdscan --fdpass --multiscan --verbose'
 ```
 
 Теперь об обходе блокировок. Пустить в Qubes OS трафик через
-[TOR](https://www.whonix.org/wiki/Qubes) – не проблема. Да и с VPN особых трудностей не возникает
-(возможно, напишу статью о своём опыте).
+[TOR](https://www.whonix.org/wiki/Qubes) – не проблема. Да и с VPN особых трудностей не возникает.
 
 В нашем случае будет достаточно «подкинуть» сигнатуры вручную. У себя в закромах я их откопал и
 выложил на GitHub ?здесь буду ссылки на мой гитхаб?. Да-да, слегка устарели. Но для демонстрации
@@ -232,8 +228,8 @@ End Date:   2026:06:10 18:13:09
 
 </spoiler>
 
-Не помешает также заглянуть в конфигурацию */etc/clamav/clamd.conf*. Там много чего интересного.
-Так, по умолчанию сканируются только файлы объемом не больше 25 мегабайт.
+Не помешает заглянуть в конфигурацию */etc/clamav/clamd.conf*. Там много чего интересного. Так, по
+умолчанию сканируются только файлы объемом не больше 25 мегабайт.
 
 ## Создаём шаблон для одноразовых кубов
 
@@ -248,10 +244,10 @@ End Date:   2026:06:10 18:13:09
 antivirus
 ```
 
-Параметр `--class AppVM` предписывает создать обычный куб. С выбором шаблона всё понятно. Цвет
-красный, потому что куб опасный: в него попадают потенциально заражённые файлы.
+Параметр `--class AppVM` предписывает создать обычный куб. С выбором шаблона всё понятно. А цвет
+красный, потому что куб опасный: в нём обитают потенциально заражённые файлы.
 
-Отрубаем выход в сеть, она не нужна в «песочнице» от слова совсем:
+Отрубаем выход в сеть, она не нужна «песочнице» от слова совсем:
 
 ```
 [dom0@dom0 ~]$ qvm-prefs \
@@ -260,7 +256,7 @@ antivirus
 ```
 
 <anchor>template_for_dispvms</anchor>
-Наконец, превратим наш новоиспеченный куб в одноразовый:
+Наконец, превратим куб в одноразовый:
 
 ```
 [dom0@dom0 ~]$ qvm-prefs \
@@ -334,7 +330,8 @@ X5O!P%@AP[4\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*
 
 ## Именованные одноразовые кубы
 
-Кроме одноразовых кубов с невнятными именами вида *dispXXXX*, есть именованные одноразовые кубы
+Кроме одноразовых кубов с невнятными именами вида *dispXXXX*, есть
+[именованные одноразовые кубы](https://doc.qubes-os.org/en/latest/user/reference/glossary.html#term-named-disposable)
 (самые яркие примеры – *sys-net* и *sys-firewall*). Они не привязаны к программе, вместе с которой
 были запущены. Скажем, запустили мы эмулятор терминала одноразового куба и тут же его закрыли. Всё,
 куб уничтожился. А именованный одноразовый куб продолжит работу до явно отданной команды на останов.
